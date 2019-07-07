@@ -50,8 +50,7 @@ export default {
       products: [],
       search: '',
       categories: [],
-      category: 0,
-      basket: []
+      category: 0
     }
   },
   created(){
