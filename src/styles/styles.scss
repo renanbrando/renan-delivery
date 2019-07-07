@@ -1,0 +1,233 @@
+@import './material-colours.scss';
+
+/* Input */
+.input-container {
+    position: relative;
+    margin: 16px;
+}
+
+input {
+    border: 0;
+    border-bottom: 2px solid $material-blue-grey;
+    color: $material-grey-600;
+    outline: none;
+    transition: .2s ease-in-out;
+    box-sizing: border-box;
+}
+
+label {
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #616161;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-size: 1rem;
+    cursor: text;
+    transition: .2s ease-in-out;
+    box-sizing: border-box;
+}
+
+input,
+label {
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+}
+
+input:valid,
+input:focus {
+    border-bottom: 2px solid $material-teal;
+}
+
+input:valid+label,
+input:focus+label {
+    color: $material-teal;
+    font-size: .8rem;
+    top: -30px;
+    pointer-events: none;
+}
+
+/* Button */
+button {
+    background-color: $material-teal;
+    color: $material-white;
+    outline: none;
+    border: none;
+    padding: 8px;
+    background-position: center;
+    transition: background 0.8s;
+
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none;
+    }
+
+    /* ripple effect */
+    &:active {
+        background: $material-teal-200 radial-gradient(circle, transparent 1%, $material-teal-300 1%);
+    }
+
+    &:hover {
+        background-color: $material-teal-400;
+        background-size: 100%;
+        transition: background 0s;
+    }
+}
+
+/* Select */
+select {
+    font-family: inherit;
+    background-color: transparent;
+    width: 100%;
+    height: 40px;
+    padding: 8px 0;
+    font-size: 1em;
+    color: $material-grey-600;
+    border: none;
+    border-radius: 0PX;
+    border-bottom: 1px solid $material-teal;
+}
+
+select:focus {
+    outline: none
+}
+
+.select-container {
+    margin: 16px;
+
+    label {
+        display: none;
+    }
+
+    select {
+        appearance: none
+    }
+
+    font-family: 'Roboto',
+    'Helvetica',
+    'Arial',
+    sans-serif;
+    position: relative;
+
+    &:after {
+        position: absolute;
+        top: 0.75em;
+        right: 0.5em;
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: .25em solid transparent;
+        border-right: .25em solid transparent;
+        border-top: .375em solid $material-teal;
+        pointer-events: none;
+    }
+}
+
+/* Card */
+.card {
+    margin: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    flex: 0 3 270px;
+    /*justify-content: center;
+    width: 230px;*/
+
+    img {
+        width: 200px;
+        margin: 0 auto;
+    }
+
+    .container {
+        padding: 2px 16px;
+
+        h4 {
+            text-align: center;
+            color: $material-grey-600;
+            min-height: 44px;
+        }
+
+        p {
+            text-align: center;
+            color: $material-teal;
+            font-weight: 500;
+            font-size: 1.2em;
+        }
+
+        .actions {
+            padding: 16px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            div {
+                .input {
+                    padding: 0 4px;
+                    border: 1px solid $material-teal;
+                    border-radius: 8px;
+                    text-align: center;
+                    color: $material-teal;
+                }
+
+                .btn {
+                    border-radius: 24px;
+                    margin: 0 4px;
+                    border: 1px solid $material-teal;
+                    height: 48px;
+                    width: 48px;
+                    font-size: 1.6em;
+                    /* ripple effect */
+                    background-position: center;
+                    transition: background 0.8s;
+
+                    &:active,
+                    &:focus,
+                    &:hover {
+                        outline: none;
+                    }
+                }
+
+                .add {
+                    background-color: $material-teal;
+                    color: $material-white;
+
+                    /* ripple effect */
+                    &:active {
+                        background: $material-teal-200 radial-gradient(circle, transparent 1%, $material-teal-300 1%);
+                    }
+
+                    &:hover {
+                        background-color: $material-teal-400;
+                        background-size: 100%;
+                        transition: background 0s;
+                    }
+                }
+
+                .remove {
+                    background-color: $material-white;
+                    color: $material-teal;
+
+                    /* ripple effect */
+                    &:active {
+                        background: $material-grey-50 radial-gradient(circle, transparent 1%, $material-grey-100 1%);
+                    }
+
+                    &:hover {
+                        background-color: $material-grey-200;
+                        background-size: 100%;
+                        transition: background 0s;
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+}
