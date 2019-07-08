@@ -74,6 +74,10 @@ export default {
   },
   methods: {
     getProducts(category = 0, search = ""){
+      if (!this.$store.getters.poc.id){
+        this.$router.replace("/")
+      }
+
       let data = {
         query: queries.products,
         variables: {
