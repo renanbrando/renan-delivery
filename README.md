@@ -1,5 +1,7 @@
 # vue-challenge
 
+Demo of project can be seen in [renan delivery - netlify](https://renan-delivery.netlify.com)
+
 ## Project setup
 ```
 npm install
