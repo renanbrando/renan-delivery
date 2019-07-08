@@ -11,10 +11,11 @@
         <option v-for="c in categories" :key="c.id" :value="c.id">{{c.title}}</option>
       </select>
     </div>
-    <div v-if="products.length <= 0">
+    <Loader :loading="loading"/>
+    <div v-if="products.length <= 0 && !loading">
       <h1 class="not-found">Não foram encontrados produtos</h1>
     </div>
-    <div v-else class="products-container">
+    <div v-if="products.length > 0 && !loading" class="products-container">
       <div class="card" v-for="(p, index) in products" :key="index">
         <img :src="p.productVariants[0].imageUrl" alt="Product">
         <div class="container">
@@ -40,17 +41,22 @@
 </template>
 
 <script>
+import Loader from '../components/Loader'
 import axios from '../api/ze'
 import queries from '../queries/'
 
 export default {
   name: 'list', 
+  components: {
+    Loader
+  },
   data(){
     return {
       products: [],
       search: '',
       categories: [],
-      category: 0
+      category: 0,
+      loading: false
     }
   },
   created(){
@@ -77,6 +83,8 @@ export default {
         }
       }
 
+      this.loading = true
+
       axios.post('/', data).then((response) => {
         if (response.data.data.poc.products.length > 0) {
           this.products = response.data.data.poc.products
@@ -88,6 +96,8 @@ export default {
         } else {
           this.products = []
         }
+      }).finally(() => {
+        this.loading = false
       })
     },
     add(item){

@@ -8,23 +8,26 @@
       <vue-google-autocomplete id="from_address" placeholder="Nos diga seu endereço" v-on:placechanged="getAddress" v-on:error="handleError"></vue-google-autocomplete>
       <label class="label" for="from_address">Endereço</label>
     </div>
+    <Loader :loading="loading"/>
   </div>
 </template>
 
 <script>
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
+import Loader from '../components/Loader'
 import axios from 'axios'
 import queries from '../queries/'
 
 export default {
   name: 'home',
   components: {
-    VueGoogleAutocomplete
+    VueGoogleAutocomplete,
+    Loader
   },
   data: () => {
     return {
-      beverage: "",
-      address: {}       
+      address: {},
+      loading: false      
     }
   },
   methods: {
@@ -40,9 +43,13 @@ export default {
         }
       } 
 
+      this.loading = true
+
       axios.post('https://803votn6w7.execute-api.us-west-2.amazonaws.com/dev/public/graphql', data).then((response)=>{
         this.$store.commit('setPoc', response.data.data.pocSearch[0])
         this.$router.push({name: 'list'})
+      }).finally(() => {
+        this.loading = false
       })
       
     },
